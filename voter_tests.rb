@@ -27,12 +27,14 @@ class VoterTests < Minitest::Test
 	end
 
 	def test_update
-		
+		#how to write a test for update? throwing error over gets.chomp
 	end
 
 	def test_vote
+		vote()
 	end
 
 	def test_tally
+		tally()
 	end
 end
