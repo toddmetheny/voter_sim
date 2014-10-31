@@ -71,10 +71,33 @@ class Politician < Voter
 		stump_speech = ["Yes we (probably) can!", "Potentially, a moderately better tomorrow!", 
 											"If you vote for anyone else, the world will end!", 
 										"Vote for me unless you hate this geographic region!", 
-										"Vote for me unless you hate freedom.", "My opponent may or may not be a Nazi."]
-		@@persons.each do
+										"Vote for me unless you hate freedom.", "My opponent may or may not be a Nazi.",
+										"If you have a baby, I'd be very happy to kiss it."]
+
+		@@pols.each do |pol|
+			puts "Hello I'm #{pol.name}."
 			puts stump_speech.sample(1)
+				@@pols.each do |other_pols|
+					unless pol.name == other_pols.name
+					puts ""
+					puts "#{other_pols.name}: Terrible speech. Awful human being. I'm voting for #{other_pols.name}."
+					puts "Random observer (shouts): You are #{other_pols.name}."
+					puts "#{other_pols.name}: Vote for #{other_pols.name}, then!"
+				end
+
+				@@persons.each do |person|
+					puts ""
+					puts "#{pol.name}: Hello very attractive and likeable voter. What's your name?"
+					puts "#{person.name}: I'm #{person.name}."
+					puts "#{pol.name}: Well, #{person.name}..."
+					puts stump_speech.sample(1)
+				end
+			end
 		end
+		puts ""
+		puts "The time for campaigning is over."
+		puts "Time to vote."
+		puts "---------------------------------"
 	end
 
 	def self.sample_politicians

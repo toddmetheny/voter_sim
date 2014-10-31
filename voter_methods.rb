@@ -41,17 +41,18 @@ module VoterMethods
 	end
 
 	def list
+		puts ""
+		puts "List of all voters and politicians:"
+		puts ""
 		Person.all.each do |person|
-			puts ""
 			puts "Voter, #{person.name}, #{person.politics}"
-			puts ""
 		end
 
 		Politician.all.each do |pol|
-			puts ""
 			puts "Politician, #{pol.name}, #{pol.political_party}"
-			puts ""
 		end
+		puts ""
+		puts "-------------------------------------"
 	end
 			
 	def update
@@ -97,6 +98,8 @@ module VoterMethods
 	end
 
 	def tally
+		puts "The results are in:"
+		puts ""
 		puts "#{Person.rep_votes.count} people voted Republican."
 		puts ""
 		puts "#{Person.dem_votes.count} people voted Democrat."
@@ -111,6 +114,7 @@ module VoterMethods
 			puts "The Democratic candidate won."
 			puts ""
 		end
+		puts "Thanks for playing."
 	end
 
 	def run_campaign
@@ -122,56 +126,58 @@ module VoterMethods
 	def vote
 		run_campaign()
 		(Person.all).each do |peep|
-			puts peep.name
+			puts "Let's poll some voters:"
+			puts ""
 			case
 				when peep.politics.downcase == "tea party"
 					if (1 + rand(100)) > 10
-						puts "I didn't change my mind."
+						puts "I'm #{peep.name}, I'd describe my politics as #{peep.politics}. Predictably, I didn't change my mind."
 						Person.rep_votes.push(peep)
 					else
-						puts "I changed my mind."
+						puts "I'm #{peep.name}, I'd describe my politics as #{peep.politics}. Shockingly, I changed my mind."
 						Person.dem_votes.push(peep)
 					end
 
 				when peep.politics.downcase == "conservative"
 					if (1 + rand(100)) > 25
-						puts "I didn't change my mind."
+						puts "I'm #{peep.name}, I'd describe my politics as #{peep.politics}. Predictably, I didn't change my mind."
 						Person.rep_votes.push(peep)
 					else
-						puts "I changed my mind."
+						puts "I'm #{peep.name}, I'd describe my politics as #{peep.politics}. Shockingly, I changed my mind."
 						Person.dem_votes.push(peep)
 					end
 
 				when peep.politics.downcase == "neutral"
 					if (1 + rand(100)) > 50
-						puts "Did I change my mind?"
+						puts "I'm #{peep.name}. I'm #{peep.politics} so I'm not sure whether I changed my mind."
 						Person.rep_votes.push(peep)
 					else
-						puts "Did I change my mind?"
+						puts "I'm #{peep.name}. I'm #{peep.politics} so I'm not sure whether I changed my mind."
 						Person.dem_votes.push(peep)
 					end 
 
 				when peep.politics.downcase == "liberal"
 					if (1 + rand(100)) > 25
-						puts "I didn't change my mind."
+						puts "I'm #{peep.name}, I'd describe my politics as #{peep.politics}. Predictably, I didn't change my mind."
 						Person.dem_votes.push(peep)
 					else
-						puts "I changed my mind"
+						puts "I'm #{peep.name}, I'd describe my politics as #{peep.politics}. Shockingly, I changed my mind."
 						Person.rep_votes.push(peep)
 					end
 
 				when peep.politics.downcase == "socialist"
 					if (1 + rand(100)) > 10
-						puts "I didn't change my mind."
+						puts "I'm #{peep.name}, I'd describe my politics as #{peep.politics}. Predictably, I didn't change my mind."
 						Person.dem_votes.push(peep)
 					else
-						puts "I changed my mind"
+						puts "I'm #{peep.name}, I'd describe my politics as #{peep.politics}. Shockingly, I changed my mind."
 						Person.rep_votes.push(peep)
 					end
 				else
 					puts "You should never see this else. It's not finding all the voters #{Person.all}."
 				end	
 			end
+			puts "----------------------------------------"
 		tally()
     end
 end

@@ -27,8 +27,6 @@ class VoterTests < Minitest::Test
 	end
 
 	def test_update
-		#how to write a test for update? throwing error over gets.chomp
-		#sample changes
 		bill = Politician.new("Bill Clinton", "Democrat")
 		bill.update()
 	end
