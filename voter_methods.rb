@@ -108,11 +108,19 @@ module VoterMethods
 			puts "Ties are like kissing your sister."
 			puts ""
 		elsif Person.rep_votes.count > Person.dem_votes.count
-			puts "The Republican candidate won."
-			puts ""
+			Politician.all.each do |politician|
+				if politician.political_party.downcase == "republican"
+					puts "Republican #{politician.name} is the victor."
+					puts ""
+				end
+			end
 		else
-			puts "The Democratic candidate won."
-			puts ""
+			Politician.all.each do |politician|
+				if politician.political_party.downcase == "democrat"
+					puts "Democrat #{politician.name} candidate won."
+					puts ""
+				end
+			end
 		end
 		puts "Thanks for playing."
 	end
@@ -123,10 +131,19 @@ module VoterMethods
 		end
 	end
 
+
+	# def changed_mind(boolean)
+	# 	if boolean == true
+	# 		puts "I'm #{peep.name}, I'd describe my politics as #{peep.politics}. Predictably, I didn't change my mind."
+	# 	else
+	# 		puts "I'm #{peep.name}, I'd describe my politics as #{peep.politics}. Shockingly, I changed my mind."
+	# 	end
+	# end
+
 	def vote
 		run_campaign()
+		puts "Let's poll some voters:"
 		(Person.all).each do |peep|
-			puts "Let's poll some voters:"
 			puts ""
 			case
 				when peep.politics.downcase == "tea party"

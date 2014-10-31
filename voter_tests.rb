@@ -27,6 +27,7 @@ class VoterTests < Minitest::Test
 	end
 
 	def test_update
+		#need to test in terminal, not with build
 		bill = Politician.new("Bill Clinton", "Democrat")
 		bill.update()
 	end

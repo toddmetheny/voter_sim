@@ -1,5 +1,5 @@
 class Voter
-	attr_accessor :id, :name, :politics, :political_party
+	attr_accessor :id, :name, :politics, :political_party, :stump_speech
 
 	@@person_id = 0
 	@@politician_id = 0
@@ -10,6 +10,8 @@ class Voter
 	#to collect votes
 	@@dem_votes = []
 	@@rep_votes = []
+
+	@@stump_speech = []
 
 end
 
@@ -38,6 +40,9 @@ class Person < Voter
 		crowell = Person.new("Jason Crowell", "Conservative")
 	end
 
+	def view_politics
+
+	end
 
 	def self.dem_votes
 		@@dem_votes
@@ -63,17 +68,7 @@ class Politician < Voter
 		@@pols
 	end
 
-	def campaign
-		puts "A campaign has begun. Time to hustle people for personal glory."
-		puts "In the name of public service, of course."
-		puts "Commence stump speeches."
-		puts ""
-		stump_speech = ["Yes we (probably) can!", "Potentially, a moderately better tomorrow!", 
-											"If you vote for anyone else, the world will end!", 
-										"Vote for me unless you hate this geographic region!", 
-										"Vote for me unless you hate freedom.", "My opponent may or may not be a Nazi.",
-										"If you have a baby, I'd be very happy to kiss it."]
-
+	def visit_every_voter
 		@@pols.each do |pol|
 			puts "Hello I'm #{pol.name}."
 			puts stump_speech.sample(1)
@@ -94,6 +89,25 @@ class Politician < Voter
 				end
 			end
 		end
+	end
+
+	def stump_speech
+		@@stump_speech = ["Yes we (probably) can!", "Potentially, a moderately better tomorrow!", 
+											"If you vote for anyone else, the world will end!", 
+										"Vote for me unless you hate this geographic region!", 
+										"Vote for me unless you hate freedom.", "My opponent may or may not be a Nazi.",
+										"If you have a baby, I'd be very happy to kiss it.",
+										"Hope you guys like WAR. I mean the band. Or sabermetrics. Not actual war."]
+	end
+
+	def campaign
+		puts "A campaign has begun. Time to hustle people for personal glory."
+		puts "In the name of public service, of course."
+		puts "Commence stump speeches."
+		puts ""
+
+		visit_every_voter()
+
 		puts ""
 		puts "The time for campaigning is over."
 		puts "Time to vote."
