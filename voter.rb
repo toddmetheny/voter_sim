@@ -1,7 +1,6 @@
 require './voter_methods'
 include VoterMethods
 require './voter_classes'
-#require './voter_tests'
 
 #remaining issues/tasks: 
 #1-make the politicians vote (for themselves), what if more politicians?
