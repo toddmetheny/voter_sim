@@ -3,8 +3,8 @@ include VoterMethods
 require './voter_classes'
 
 #remaining issues/tasks: 
-#1-print out the candidate specific results using the candidates name
-#2-Build out to include a primary.
+#1-Build out to include a primary.
+#2-Could still use additional refactoring.
 
 Person.sample_persons()
 Person.rep_votes.push(Politician.new("Honest Abe", "Republican"))
