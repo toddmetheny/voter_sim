@@ -40,9 +40,8 @@ class Person < Voter
 		crowell = Person.new("Jason Crowell", "Conservative")
 	end
 
-	def view_politics
-
-	end
+	# def view_politics
+	# end
 
 	def self.dem_votes
 		@@dem_votes

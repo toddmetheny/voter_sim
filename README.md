@@ -1,5 +1,12 @@
-voter_sim
-=========
+Issues:
+
+1. Currently only contemplates one Republican candidate and one Democratic candidate. It works...but that's all the data determines. Needs a primary election to resolve multiple candidates of a type. 
+
+2. Needs additional refactoring.
+
+3. Needs additional tests. 
+
+4. Currently pre-populating sample users. Comment out out lines 6 through 9 in voter.rb to avoid using those users.
 
 Ruby Voter Simulation...Wyncode Assignment
 

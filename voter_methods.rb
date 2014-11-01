@@ -2,15 +2,16 @@ module VoterMethods
 	def start
 		process = 0
 		until process == 1
-			puts "What would you like to do? Create, List, Update, or Vote."
-			answer = gets.chomp
-			if answer.downcase == 'create'
+		puts "What would you like to do? Create, List, Update, or Vote."
+		answer = gets.chomp
+		  case answer.downcase
+			when 'create'
 				create()
-			elsif answer.downcase == 'list'
+			when 'list'
 				list()
-			elsif answer.downcase == 'update'
+			when 'update'
 				update()
-			elsif answer.downcase == 'vote'
+			when 'vote'
 				vote()
 				process += 1
 			else
@@ -97,13 +98,18 @@ module VoterMethods
 		end
 	end
 
-	def tally
+	def report_results
 		puts "The results are in:"
 		puts ""
 		puts "#{Person.rep_votes.count} people voted Republican."
 		puts ""
 		puts "#{Person.dem_votes.count} people voted Democrat."
 		puts ""
+	end
+
+	def tally
+		report_results()
+
 		if Person.rep_votes.count == Person.dem_votes.count
 			puts "Ties are like kissing your sister."
 			puts ""
@@ -117,7 +123,7 @@ module VoterMethods
 		else
 			Politician.all.each do |politician|
 				if politician.political_party.downcase == "democrat"
-					puts "Democrat #{politician.name} candidate won."
+					puts "Democrat #{politician.name} is the victor."
 					puts ""
 				end
 			end
@@ -132,13 +138,17 @@ module VoterMethods
 	end
 
 
-	# def changed_mind(boolean)
-	# 	if boolean == true
-	# 		puts "I'm #{peep.name}, I'd describe my politics as #{peep.politics}. Predictably, I didn't change my mind."
-	# 	else
-	# 		puts "I'm #{peep.name}, I'd describe my politics as #{peep.politics}. Shockingly, I changed my mind."
-	# 	end
-	# end
+	def changed_mind(boolean, name, politics)
+		if boolean == false
+			puts "I'm #{name}, I'd describe my politics as #{politics}. Predictably, I didn't change my mind."
+		else
+			puts "I'm #{name}, I'd describe my politics as #{politics}. Shockingly, I changed my mind."
+		end
+	end
+
+	def probability(num)
+		(1 + rand(100)) > num
+	end
 
 	def vote
 		run_campaign()
@@ -147,25 +157,25 @@ module VoterMethods
 			puts ""
 			case
 				when peep.politics.downcase == "tea party"
-					if (1 + rand(100)) > 10
-						puts "I'm #{peep.name}, I'd describe my politics as #{peep.politics}. Predictably, I didn't change my mind."
+					if probability(10)
+						changed_mind(false, peep.name, peep.politics)
 						Person.rep_votes.push(peep)
 					else
-						puts "I'm #{peep.name}, I'd describe my politics as #{peep.politics}. Shockingly, I changed my mind."
+						changed_mind(true, peep.name, peep.politics)
 						Person.dem_votes.push(peep)
 					end
 
 				when peep.politics.downcase == "conservative"
-					if (1 + rand(100)) > 25
-						puts "I'm #{peep.name}, I'd describe my politics as #{peep.politics}. Predictably, I didn't change my mind."
+					if probability(25)
+						changed_mind(false, peep.name, peep.politics)
 						Person.rep_votes.push(peep)
 					else
-						puts "I'm #{peep.name}, I'd describe my politics as #{peep.politics}. Shockingly, I changed my mind."
+						changed_mind(true, peep.name, peep.politics)
 						Person.dem_votes.push(peep)
 					end
 
 				when peep.politics.downcase == "neutral"
-					if (1 + rand(100)) > 50
+					if probability(50)
 						puts "I'm #{peep.name}. I'm #{peep.politics} so I'm not sure whether I changed my mind."
 						Person.rep_votes.push(peep)
 					else
@@ -174,24 +184,24 @@ module VoterMethods
 					end 
 
 				when peep.politics.downcase == "liberal"
-					if (1 + rand(100)) > 25
-						puts "I'm #{peep.name}, I'd describe my politics as #{peep.politics}. Predictably, I didn't change my mind."
+					if probability(25)
+						changed_mind(false, peep.name, peep.politics)
 						Person.dem_votes.push(peep)
 					else
-						puts "I'm #{peep.name}, I'd describe my politics as #{peep.politics}. Shockingly, I changed my mind."
+						changed_mind(true, peep.name, peep.politics)
 						Person.rep_votes.push(peep)
 					end
 
 				when peep.politics.downcase == "socialist"
-					if (1 + rand(100)) > 10
-						puts "I'm #{peep.name}, I'd describe my politics as #{peep.politics}. Predictably, I didn't change my mind."
+					if probability(10)
+						changed_mind(false, peep.name, peep.politics)
 						Person.dem_votes.push(peep)
 					else
-						puts "I'm #{peep.name}, I'd describe my politics as #{peep.politics}. Shockingly, I changed my mind."
+						changed_mind(true, peep.name, peep.politics)
 						Person.rep_votes.push(peep)
 					end
 				else
-					puts "You should never see this else. It's not finding all the voters #{Person.all}."
+					puts "For some reason. We're not finding your politics...please update your politics before voting."
 				end	
 			end
 			puts "----------------------------------------"
