@@ -1,4 +1,5 @@
 module VoterMethods
+	#run the program
 	def start
 		process = 0
 		until process == 1
@@ -20,6 +21,7 @@ module VoterMethods
 		end
 	end
 
+	#control flow for when the user chooses 'create'
 	def create
 		puts "What would you like to create? Politician or Person."
 		create_answer = gets.chomp
@@ -41,6 +43,7 @@ module VoterMethods
 		end
 	end
 
+	#control flow to generate a list of all the politicians and voters
 	def list
 		puts ""
 		puts "List of all voters and politicians:"
@@ -55,7 +58,8 @@ module VoterMethods
 		puts ""
 		puts "-------------------------------------"
 	end
-			
+	
+	#control flow for updating a person. Requires name to be entered/spelled correctly.		
 	def update
 		puts "What is your name?"
 		old_name = gets.chomp.capitalize

@@ -4,16 +4,19 @@ class Voter
 	@@person_id = 0
 	@@politician_id = 0
 
+	#arrays of each object that's created
 	@@persons = []
 	@@pols = []
 
-	#to collect votes
+	#to collect votes, we'll count the votes with .count
 	@@dem_votes = []
 	@@rep_votes = []
 
 	#randomization of which speech we'll give
 	@@stump_speech = []
 
+	###############################
+	#everything below this line is only used for a primary
 	#party specific...for a primary
 	@@all_republicans = []
 	@@all_democrats = []
@@ -23,6 +26,7 @@ class Voter
 	@@rep_nominee = []
 
 end
+
 
 class Person < Voter
 	attr_accessor :sample_persons
