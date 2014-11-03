@@ -114,18 +114,18 @@ module VoterMethods
 			puts "Ties are like kissing your sister."
 			puts ""
 		elsif Person.rep_votes.count > Person.dem_votes.count
-			Politician.all.each do |politician|
-				if politician.political_party.downcase == "republican"
+			Politician.rep_nominee.each do |politician|
+			# 	if politician.political_party.downcase == "republican"
 					puts "Republican #{politician.name} is the victor."
 					puts ""
-				end
+				#end
 			end
 		else
-			Politician.all.each do |politician|
-				if politician.political_party.downcase == "democrat"
+			 Politician.dem_nominee.each do |politician|
+			# 	if politician.political_party.downcase == "democrat"
 					puts "Democrat #{politician.name} is the victor."
 					puts ""
-				end
+				#end
 			end
 		end
 		puts "Thanks for playing."
@@ -151,6 +151,7 @@ module VoterMethods
 	end
 
 	def vote
+		Politician.primary()
 		run_campaign()
 		puts "Let's poll some voters:"
 		(Person.all).each do |peep|

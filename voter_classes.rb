@@ -11,7 +11,16 @@ class Voter
 	@@dem_votes = []
 	@@rep_votes = []
 
+	#randomization of which speech we'll give
 	@@stump_speech = []
+
+	#party specific...for a primary
+	@@all_republicans = []
+	@@all_democrats = []
+
+	#could use if there's more than one candidate
+	@@dem_nominee = []
+	@@rep_nominee = []
 
 end
 
@@ -111,6 +120,55 @@ class Politician < Voter
 		puts "The time for campaigning is over."
 		puts "Time to vote."
 		puts "---------------------------------"
+	end
+
+	def self.primary
+		Politician.all.each do |pol|
+			if pol.political_party.downcase == "democrat"
+				@@all_democrats.push(pol)
+			else 
+				@@all_republicans.push(pol)
+			end
+		end
+
+		puts @@all_democrats
+		puts @@all_republicans
+
+		if @@all_democrats.count > 1
+			puts "There are #{@@all_democrats.count}."
+			puts "Looks like we'll need a democratic primary."
+			@@dem_nominee = @@all_democrats.sample(1)
+			@@dem_nominee.each do |nominee|
+				puts "And the Democratic nominee is #{nominee.name}!"
+			end
+		else
+			puts "No need for a primary, there's only #{@@all_democrats.count} Democrat."
+			@@dem_nominee.push(@@all_democrats[0])
+		end
+
+		p @@dem_nominee
+
+		if @@all_republicans.count > 1
+			puts "There are #{@@all_republicans.count}."
+			puts "Looks like we'll need a Republican primary."
+			@@rep_nominee = @@all_republicans.sample(1)
+			@@rep_nominee.each do |nominee|
+				puts "And the Republican nominee is #{nominee.name}!"
+			end
+		else
+			puts "No need for a primary, there's only #{@@all_republicans.count} Republican."
+			@@rep_nominee.push(@@all_republicans[0])
+		end
+
+		p @@rep_nominee
+	end
+
+	def self.dem_nominee
+		@@dem_nominee
+	end
+
+	def self.rep_nominee
+		@@rep_nominee
 	end
 
 	def self.sample_politicians
