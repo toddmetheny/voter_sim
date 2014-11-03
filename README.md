@@ -1,6 +1,6 @@
 Issues:
 
-1. Added a primary election but it could use some refactoring/cleaning up. Currently, even after the primary all the politicians visit every voter. Should just be the winners. 
+1. Added a primary election but it could use some refactoring/cleaning up. Fixed bug where all politicians visit every voter after a primary. Altered so that now only the primary winners visit every voter and give stump speeches. 
 
 2. Needs additional refactoring.
 
