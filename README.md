@@ -1,6 +1,6 @@
 Issues:
 
-1. Currently only contemplates one Republican candidate and one Democratic candidate. It works...but that's all the data determines. Needs a primary election to resolve multiple candidates of a type. 
+1. Added a primary election but it could use some refactoring/cleaning up. Currently, even after the primary all the politicians visit every voter. Should just be the winners. 
 
 2. Needs additional refactoring.
 
