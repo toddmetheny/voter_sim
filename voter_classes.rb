@@ -77,7 +77,8 @@ class Politician < Voter
 	end
 
 	def visit_every_voter
-		@@pols.each do |pol|
+		two_nominees = @@dem_nominee + @@rep_nominee
+		two_nominees.each do |pol|
 			puts "Hello I'm #{pol.name}."
 			puts stump_speech.sample(1)
 				@@pols.each do |other_pols|
@@ -135,7 +136,7 @@ class Politician < Voter
 		puts @@all_republicans
 
 		if @@all_democrats.count > 1
-			puts "There are #{@@all_democrats.count}."
+			puts "There are #{@@all_democrats.count} Democrats."
 			puts "Looks like we'll need a democratic primary."
 			@@dem_nominee = @@all_democrats.sample(1)
 			@@dem_nominee.each do |nominee|
@@ -149,7 +150,7 @@ class Politician < Voter
 		p @@dem_nominee
 
 		if @@all_republicans.count > 1
-			puts "There are #{@@all_republicans.count}."
+			puts "There are #{@@all_republicans.count} Republicans."
 			puts "Looks like we'll need a Republican primary."
 			@@rep_nominee = @@all_republicans.sample(1)
 			@@rep_nominee.each do |nominee|
